@@ -84,6 +84,12 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::post('/customer/invoices/test/{amount}', [\App\Http\Controllers\Customer\InvoiceController::class, 'paymentIntent'])->name('customer.invoices.paymentIntent');
     Route::get('/customer/invoices/stripe/success', [\App\Http\Controllers\Customer\InvoiceController::class, 'stripeSuccess'])->name('customer.invoices.stripe.success');
 
+
+    Route::get('/customer/payment-gateways', [\App\Http\Controllers\Customer\PaymentGatewayController::class, 'index'])->name('paymentgateways');
+    Route::get('/customer/payment-gateways/changeVisibility/{id}/{visibility}/{type}', [\App\Http\Controllers\Customer\PaymentGatewayController::class, 'changeVisibility'])->name('changeVisibility');
+    Route::get('/customer/payment-gateways/show/{id}/{type}', [\App\Http\Controllers\Customer\PaymentGatewayController::class, 'show'])->name('customer.create');
+    Route::post('/customer/payment-gateways/store', [\App\Http\Controllers\Customer\PaymentGatewayController::class, 'store'])->name('customer.store');
+
     //    TODO Products Page Route
     // Route::get('/products', function () {return view('products.index');})->name('products.index');
     Route::resource('/products',\App\Http\Controllers\Customer\ProductController::class);
