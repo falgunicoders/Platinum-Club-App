@@ -30,6 +30,7 @@ class PaymentGatewayController extends Controller
         $PaymentGateway = PaymentGateway::whereId($id)->first();
         $PaymentGateway[$type] = $visibility;
         $PaymentGateway->save();
+        
         return back();
     }
 
